@@ -1,15 +1,9 @@
 table
 { 
   height: auto; 
-  width: 728px;
+  width: auto;
   padding: 0; 
   margin: 0 auto; 
-  background: #EEE; 
-  color: #000; 
-  border: 3px solid #0567FA;
-  border-radius: 5px;
-	border-spacing: 0;
-	border-collapse:collapse;
 }
 
 #myDataTable td {
@@ -26,44 +20,19 @@ table
 	color: #FFF;	
 }
 
-.rowGroup {
-	border-top: 2px solid #0567FA;
-}
-
-td span {
-	width: 40px;
-	display: inline-block;
-	text-align:center;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	overflow: hidden;
-}
-
 .IncremBtn, .DecremBtn {
-width: 50px;
-height: 50px;
-display: inline-block;
 border: none;
 margin: 0;
 padding: 0;
 }
 
 .IncremBtn {
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#b4e391), color-stop(50%,#61c419), color-stop(100%,#b4e391)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top,  #b4e391 0%,#61c419 50%,#b4e391 100%); /* Chrome10+,Safari5.1+ */
+	width: 100px;
+	height: 100px;
 }
 
 .DecremBtn {
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#feccb1), color-stop(50%,#f17432), color-stop(51%,#ea5507), color-stop(100%,#fb955e)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top,  #feccb1 0%,#f17432 50%,#ea5507 51%,#fb955e 100%); /* Chrome10+,Safari5.1+ */
-	width: 25px;
-	height: 25px;
+	width: 50px;
+	height: 50px;
 }
 
-.colYes, .colNo, .colUnk {
-	width: 150px;
-}
-
-.colYes, .colUnk {
-	background: #ccc !important;
-}

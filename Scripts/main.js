@@ -202,7 +202,6 @@ function editSite(){
 	    document.forms["Site"]["mylocation"].value = storedData[8];
 	    document.forms["Site"]["mycomments"].value = storedData[9];
 	    document.forms["Site"]["mydate"].value = storedData[10];
-	    document.forms["Site"]["myend"].value = storedData[11];
 	     
 }
 
@@ -228,12 +227,12 @@ function getCounts() {
 		MyValues[i] = $(myID).html(); //document.getElementById(i.toString()).innerHTML;
     }
     //add site info too
-    MyValues[30] = document.getElementsByName("mysiteID")[0].value; // this doesnt seem to work $("#mysiteID").val();
-    MyValues[31] = document.getElementsByName("myname")[0].value; // $('#myname').val();
-    MyValues[32] = document.getElementsByName("mylocation")[0].value; // $('#mylocation').val();
-    MyValues[33] = document.getElementsByName("mycomments")[0].value; // $('#mycomments').val();
-    MyValues[34] = document.getElementsByName("mydate")[0].value; // $('#mydate').val();
-    MyValues[36] = "ver 1.0";
+    MyValues[6] = document.getElementsByName("mysiteID")[0].value; // this doesnt seem to work $("#mysiteID").val();
+    MyValues[7] = document.getElementsByName("myname")[0].value; // $('#myname').val();
+    MyValues[8] = document.getElementsByName("mylocation")[0].value; // $('#mylocation').val();
+    MyValues[9] = document.getElementsByName("mycomments")[0].value; // $('#mycomments').val();
+    MyValues[10] = document.getElementsByName("mydate")[0].value; // $('#mydate').val();
+    MyValues[11] = "ver 1.0";
     return MyValues;
 }
 
