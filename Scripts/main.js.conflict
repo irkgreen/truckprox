@@ -317,6 +317,7 @@ function exportToCSV() {
 	
 	// prepare CSV data
 	var csvData = new Array();
+
 	csvData.push('"TTwS","TTwoS","Other","uTTwS","uTTwoS","uOther","SiteID","Name","Location","Comments","Date","Ver"');
 	
 	for (var i = 0; i < localStorage.length; i++){
@@ -381,3 +382,4 @@ function changecolors() {
 function changeBack() {
 	document.body.style.background = "white";
 }
+
