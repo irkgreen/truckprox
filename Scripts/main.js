@@ -200,7 +200,10 @@ function editSite(){
 	    document.forms["Site"]["mycomments"].value = storedData[10];
 	    document.forms["Site"]["mydate"].value = storedData[11];
 		document.forms["Site"]["myweather"].value = storedData[12];
-	     
+	    
+	    
+	    document.getElementsByName("mysiteID")[0].disabled = true;
+	    document.getElementsByName("myname")[0].disabled = true;
 }
 
 function removeSite(){
