@@ -15,12 +15,19 @@
 </head>
 <body>
   <form id="Site">
-<button id="newSite" type='button'>Clear Form and Data (new site)</button><br>
+<button id="newSite" type='button'>New Site</button><br>
 SiteID: <input type="text" id="mysiteID" name="mysiteID"><br>
-Name: <input type="text" id="myname" name="myname"><br>
+Collector Name: <input type="text" id="myname" name="myname"><br>
 Location (Exit No./MP): <input type="text" id="mylocation" name="mylocation"><br>
+Facility Name: <input type="text" id="myfacility" name="myfacility"><br>
 Comments: <input type="text" id="mycomments" name="mycomments"><br>
 Start Date: <input type="date" name="mydate" readonly><br>
+Weather:
+<select id="myweather" name="myweather" OnChange='OnChange();'>
+  <option value="dry">Dry</option>
+  <option value="raining">Raining</option>
+  <option value="wet">Wet</option>
+</select>
 <button id="startData" type='button'>Start/Edit Data</button>
 <br><br>
 Collected Data:
@@ -29,6 +36,7 @@ Collected Data:
 <button id="editSite" type='button'>Edit Site</button>
 <button id="removeSite" type='button'>Remove Site</button>
 <button id="Upload" type='button'>Upload</button>
+<button id="Delete" type='button'>Clear All Data</button>
 </form>
   <div id="datatable" style="display:none">
   <table id="myDataTable">
@@ -55,7 +63,7 @@ Collected Data:
   </div>
   
   <aside id="info">
-    <p>TruckProx 1.002</p>
+    <p>TruckProx 1.003</p>
   </aside>
   <span id="Backup"></span>
 </body>

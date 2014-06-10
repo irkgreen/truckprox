@@ -47,6 +47,11 @@ $(document).ready(function(){
       .button()
       .click(function() {
         Upload();
+     });
+	 $("#Delete")
+      .button()
+      .click(function() {
+        clearData();
       });
       $("#startData")
       .button()
@@ -60,6 +65,10 @@ $(document).ready(function(){
       $("#mylocation") //autosave as the user types
       .keyup(function() {
       	saveSite($("#mylocation").val());
+      });
+      $("#myfacility") //autosave as the user types
+      .keyup(function() {
+      	saveSite($("#myfacility").val());
       });
 	loadSites();
 	 
@@ -104,13 +113,10 @@ function Upload(){
 		return false;
 	}
 	
-	//write to a backup file (timestamp)
-	exportToCSV();
-	
 	//check internet
 	
 	//loop through local storage and add to string
-	var emailBody = '"TTwS","TTwoS","Other","uTTwS","uTTwoS","uOther","SiteID","Name","Location","Comments","Date","Ver"';
+	var emailBody = '"TTwS","TTwoS","Other","uTTwS","uTTwoS","uOther","SiteID","Name","Location","FacilityName","Comments","Date","Ver"';
 	var localstro = "";
 	for (var i = 0; i < localStorage.length; i++){
 		localstor = localStorage.getItem(localStorage.key(i));
@@ -123,16 +129,6 @@ function Upload(){
 	window.location.href = "mailto:eric.green@uky.edu?subject=TruckProxUpload&body=" + emailBody;
 
 	//verify email
-	
-	//ask user if they are sure
-	if (confirm('Was the email sent and would you like to delete the local data?')) {
-		//remove all data from local storage and listbox
-	    localStorage.clear();
-		loadSites(); //this will verfify that the localstorage was cleared and clear the dropbown accordingly
-		
-	} else {
-	    // Do nothing!
-	}
 	
 	//console.log("here!");
 	//copy all data to clipboard
@@ -200,8 +196,10 @@ function editSite(){
 	    document.forms["Site"]["mysiteID"].value = storedData[6];
     	document.forms["Site"]["myname"].value = storedData[7];
 	    document.forms["Site"]["mylocation"].value = storedData[8];
-	    document.forms["Site"]["mycomments"].value = storedData[9];
-	    document.forms["Site"]["mydate"].value = storedData[10];
+	    document.forms["Site"]["myfacility"].value = storedData[9];
+	    document.forms["Site"]["mycomments"].value = storedData[10];
+	    document.forms["Site"]["mydate"].value = storedData[11];
+		document.forms["Site"]["myweather"].value = storedData[12];
 	     
 }
 
@@ -230,9 +228,12 @@ function getCounts() {
     MyValues[6] = document.getElementsByName("mysiteID")[0].value; // this doesnt seem to work $("#mysiteID").val();
     MyValues[7] = document.getElementsByName("myname")[0].value; // $('#myname').val();
     MyValues[8] = document.getElementsByName("mylocation")[0].value; // $('#mylocation').val();
-    MyValues[9] = document.getElementsByName("mycomments")[0].value; // $('#mycomments').val();
-    MyValues[10] = document.getElementsByName("mydate")[0].value; // $('#mydate').val();
-    MyValues[11] = "ver 1.0";
+    MyValues[9] = document.getElementsByName("mylocation")[0].value; // $('#mylocation').val();
+    MyValues[10] = document.getElementsByName("mycomments")[0].value; // $('#mycomments').val();
+    MyValues[11] = document.getElementsByName("mydate")[0].value; // $('#mydate').val();
+    var e = document.getElementById("myweather");
+	MyValues[12] = e.options[e.selectedIndex].text;
+    MyValues[13] = "ver 1.0";
     return MyValues;
 }
 
@@ -257,6 +258,7 @@ function createNewSite() {
     document.getElementsByName("mysiteID")[0].value = ""; // this doesnt seem to work $("#mysiteID").val();
     document.getElementsByName("myname")[0].value = ""; // $('#myname').val();
     document.getElementsByName("mylocation")[0].value = ""; // $('#mylocation').val();
+    document.getElementsByName("myfacility")[0].value = ""; // $('#mylocation').val();
     document.getElementsByName("mycomments")[0].value = ""; // $('#mycomments').val();
     document.getElementsByName("mydate")[0].value = ""; // $('#mydate').val();
 
@@ -374,10 +376,42 @@ function exportToCSV() {
 }
 
 function changecolors() {
-    document.body.style.background = "red";
-    setInterval(changeBack, 200);
+	if (document.body.style.background == "")
+	{
+		document.body.style.background = "grey";
+	}
+	else 
+	{	
+		document.body.style.background = "";
+	}
+        //setInterval(changeBack, 200);
     }
 
-function changeBack() {
-	document.body.style.background = "white";
+function OnChange(dropdown)
+{ 	
+	//update local storage as weather changed
+	saveSite("ok"); 
+}
+function clearData(){
+	
+		//check if data
+		  if (document.getElementById("previousData").length <= 0) {
+			alert("No data to remove.");
+			return false;
+		}
+	
+		//ask user if they are sure
+	if (confirm('Are you sure?  This will clear all collected data.  Only do this if the data has already been emailed AND entered!!!  A backup will be temporarily available on this page but should not be counted on.')) {
+		
+		//write to a backup file (timestamp)
+		exportToCSV();
+		
+		//remove all data from local storage and listbox
+	    localStorage.clear();
+		loadSites(); //this will verfify that the localstorage was cleared and clear the dropbown accordingly
+		createNewSite();  //clear form cache
+		
+	} else {
+	    // Do nothing!
+	}
 }
