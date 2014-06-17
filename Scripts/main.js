@@ -116,7 +116,7 @@ function Upload(){
 	//check internet
 	
 	//loop through local storage and add to string
-	var emailBody = '"TTwS","TTwoS","Other","uTTwS","uTTwoS","uOther","SiteID","Name","Location","FacilityName","Comments","Date","Ver"';
+	var emailBody = '"M_Y_TTwS","M_Y_TTwoS","M_Y_Other","M_N_TTwS","M_N_TTwoS","M_N_Other","U_Y_TTwS","U_Y_TTwoS","U_Y_Other","U_N_TTwS","U_N_TTwoS","U_N_Other","SiteID","Name","Location","FacilityName","Comments","Date","Ver"';
 	var localstro = "";
 	for (var i = 0; i < localStorage.length; i++){
 		localstor = localStorage.getItem(localStorage.key(i));
@@ -160,7 +160,13 @@ function loadSites(){
 
 function saveSite(myVal){
 //this function saves the site in the event the user changes main form values
-
+		
+		if(document.forms["Site"]["mydate"].value == "")
+		{
+			//no need to save yet as data hasn't started
+			return false;
+		}
+		
 		//check for commas
 		if(myVal.indexOf(",") > -1)
 		{
@@ -187,19 +193,19 @@ function editSite(){
         var storedData = JSON.parse(strValue);
 	    
 	    //populate count data
-	 	for (var i = 200; i < 206; i++) {
+	 	for (var i = 200; i < 212; i++) {
 			//alert(document.getElementById(i.toString()).innerHTML);
 			$('#' + i).html(storedData[i]); //not innerHTML?
     	}
 	    
 	    //populate site data
-	    document.forms["Site"]["mysiteID"].value = storedData[6];
-    	document.forms["Site"]["myname"].value = storedData[7];
-	    document.forms["Site"]["mylocation"].value = storedData[8];
-	    document.forms["Site"]["myfacility"].value = storedData[9];
-	    document.forms["Site"]["mycomments"].value = storedData[10];
-	    document.forms["Site"]["mydate"].value = storedData[11];
-		document.forms["Site"]["myweather"].value = storedData[12];
+	    document.forms["Site"]["mysiteID"].value = storedData[12];
+    	document.forms["Site"]["myname"].value = storedData[13];
+	    document.forms["Site"]["mylocation"].value = storedData[14];
+	    document.forms["Site"]["myfacility"].value = storedData[15];
+	    document.forms["Site"]["mycomments"].value = storedData[16];
+	    document.forms["Site"]["mydate"].value = storedData[17];
+		document.forms["Site"]["myweather"].value = storedData[18];
 	    
 	    
 	    document.getElementsByName("mysiteID")[0].disabled = true;
@@ -222,21 +228,21 @@ function getCounts() {
 	var myID = "0"; 
 	//loop through each button and get count
 	
-    for (var i = 200; i < 206; i++) {
+    for (var i = 200; i < 212; i++) {
 		//alert(document.getElementById(i.toString()).innerHTML);
 		myID = '#' + i;
 		MyValues[i] = $(myID).html(); //document.getElementById(i.toString()).innerHTML;
     }
     //add site info too
-    MyValues[6] = document.getElementsByName("mysiteID")[0].value; // this doesnt seem to work $("#mysiteID").val();
-    MyValues[7] = document.getElementsByName("myname")[0].value; // $('#myname').val();
-    MyValues[8] = document.getElementsByName("mylocation")[0].value; // $('#mylocation').val();
-    MyValues[9] = document.getElementsByName("mylocation")[0].value; // $('#mylocation').val();
-    MyValues[10] = document.getElementsByName("mycomments")[0].value; // $('#mycomments').val();
-    MyValues[11] = document.getElementsByName("mydate")[0].value; // $('#mydate').val();
+    MyValues[12] = document.getElementsByName("mysiteID")[0].value; // this doesnt seem to work $("#mysiteID").val();
+    MyValues[13] = document.getElementsByName("myname")[0].value; // $('#myname').val();
+    MyValues[14] = document.getElementsByName("mylocation")[0].value; // $('#mylocation').val();
+    MyValues[15] = document.getElementsByName("mylocation")[0].value; // $('#mylocation').val();
+    MyValues[16] = document.getElementsByName("mycomments")[0].value; // $('#mycomments').val();
+    MyValues[17] = document.getElementsByName("mydate")[0].value; // $('#mydate').val();
     var e = document.getElementById("myweather");
-	MyValues[12] = e.options[e.selectedIndex].text;
-    MyValues[13] = "ver 1.0";
+	MyValues[18] = e.options[e.selectedIndex].text;
+    MyValues[19] = "ver 1.0";
     return MyValues;
 }
 
@@ -252,7 +258,7 @@ function getID() {
 function createNewSite() {
   
    	//clear all data
-    for (var i = 200; i < 206; i++) {
+    for (var i = 200; i < 212; i++) {
 		//alert(document.getElementById(i.toString()).innerHTML);
 		document.getElementById(i.toString()).innerHTML=0;
 		//$('#' + i.toString).html(0); //doesnt work???
@@ -322,7 +328,7 @@ function exportToCSV() {
 	
 	// prepare CSV data
 	var csvData = new Array();
-	csvData.push('"TTwS","TTwoS","Other","uTTwS","uTTwoS","uOther","SiteID","Name","Location","Comments","Date","Ver"');
+	csvData.push('"M_Y_TTwS","M_Y_TTwoS","M_Y_Other","M_N_TTwS","M_N_TTwoS","M_N_Other","U_Y_TTwS","U_Y_TTwoS","U_Y_Other","U_N_TTwS","U_N_TTwoS","U_N_Other","SiteID","Name","Location","FacilityName","Comments","Date","Ver"');
 	
 	for (var i = 0; i < localStorage.length; i++){
 	var str = localStorage.getItem(localStorage.key(i));
@@ -379,13 +385,13 @@ function exportToCSV() {
 }
 
 function changecolors() {
-	if (document.body.style.background == "")
+	if (document.body.style.background == "rgb(216, 216, 216)")
 	{
-		document.body.style.background = "grey";
+		document.body.style.background = "#cef6d8";
 	}
 	else 
 	{	
-		document.body.style.background = "";
+		document.body.style.background = "#d8d8d8";
 	}
         //setInterval(changeBack, 200);
     }
