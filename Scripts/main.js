@@ -307,6 +307,9 @@ function startData() {
    
     document.getElementsByName("mysiteID")[0].disabled = true;
     document.getElementsByName("myname")[0].disabled = true;
+    
+    //set title
+    document.title = $("#mysiteID").val();
 }
 
 function stopData() {
