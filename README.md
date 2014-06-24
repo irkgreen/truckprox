@@ -1,8 +1,12 @@
 truckprox
 ========
 
-add weather or use comments?
+add weather to title
 
-gets data from pin-3 for local storage?
+add line return
 
-iPhone looks bad
+remove []'s
+
+show ID as title
+
+nulls?
